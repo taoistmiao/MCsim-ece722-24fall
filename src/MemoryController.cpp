@@ -356,7 +356,8 @@ void MemoryController::receiveData(BusPacket *bpacket)
 		{
 			if (pendingReadRequest[index]->requestSize == dataBusWidth)
 			{
-				callback(*pendingReadRequest[index]);
+				// callback(*pendingReadRequest[index]);
+				returnReadData(pendingReadRequest[index]);
 				// ============ Stats Tracker ===================
 				if (bpacket->requestorID == 0)
 				{
@@ -403,7 +404,8 @@ void MemoryController::sendData(BusPacket *bpacket)
 		{
 			if (pendingWriteRequest[index]->requestSize == dataBusWidth)
 			{
-				callback(*pendingWriteRequest[index]);
+				// callback(*pendingWriteRequest[index]);
+				writeDataDone(pendingWriteRequest[index]);
 
 				// ============ Stats Tracker ===================
 				if (bpacket->requestorID == 0)
